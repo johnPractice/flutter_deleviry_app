@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 
 import '../data/data.dart';
 import '../models/order.dart';
-import '../models/order.dart';
 
 class RecentOrder extends StatelessWidget {
   _buildRecetOrder(BuildContext context, Order order) {
