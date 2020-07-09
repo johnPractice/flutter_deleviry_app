@@ -6,6 +6,7 @@ import 'package:flutter_food_delivery_ui/widgets/RateStars.dart';
 import 'package:flutter_food_delivery_ui/widgets/recent_orders.dart';
 
 import '../data/data.dart';
+import 'cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -113,7 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
               'Cart (${currentUser.cart.length})',
               style: TextStyle(color: Colors.white, fontSize: 20.0),
             ),
-            onPressed: () {},
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => CartScreen(title: currentUser.cart.length,order:currentUser.cart)),
+            ),
           ),
         ],
       ),
