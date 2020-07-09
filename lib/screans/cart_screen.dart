@@ -14,7 +14,9 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   _buildCartItem({order}) {
-    final String _totalPrice = '\$ '+(order.food.price*order.quantity).toString();
+    final String _totalPrice =
+        '\$ ' + (order.food.price * order.quantity).toString();
+
     return Container(
       padding: EdgeInsets.all(20.0),
       height: 170.0,
@@ -103,15 +105,18 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
           ),
-          Text(_totalPrice,style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.w600),),
+          Text(
+            _totalPrice,
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+          ),
         ],
-
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    double total = 0;
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text('Cart (' + widget.title.toString() + ')')),
@@ -119,8 +124,75 @@ class _CartScreenState extends State<CartScreen> {
       body: ListView.separated(
           physics: BouncingScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
-            Order orderIndex = widget.order[index];
-            return _buildCartItem(order: orderIndex);
+            if (index < widget.order.length) {
+              Order orderIndex = widget.order[index];
+              total = total + orderIndex.food.price * orderIndex.quantity;
+              return _buildCartItem(order: orderIndex);
+            }
+            return Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Total Coast :',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        '\$ ' + total.toStringAsFixed(2),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Total time Delivery :',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            '25 min',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            Icons.motorcycle,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 120.0,)
+                ],
+              ),
+            );
           },
           separatorBuilder: (BuildContext context, int index) {
             return Divider(
@@ -128,7 +200,24 @@ class _CartScreenState extends State<CartScreen> {
               color: Colors.grey,
             );
           },
-          itemCount: widget.title),
+          itemCount: widget.title + 1),
+      bottomSheet: GestureDetector(
+        onTap: () {},
+        child: Container(
+          height: 100.0,
+          width: MediaQuery.of(context).size.width,
+          color: Theme.of(context).primaryColor,
+          child: Center(
+            child: Text(
+              'Check out',
+              style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
