@@ -16,7 +16,6 @@ class _CartScreenState extends State<CartScreen> {
   _buildCartItem({order}) {
     final String _totalPrice =
         '\$ ' + (order.food.price * order.quantity).toString();
-
     return Container(
       padding: EdgeInsets.all(20.0),
       height: 170.0,
@@ -26,7 +25,7 @@ class _CartScreenState extends State<CartScreen> {
             child: Row(
               children: <Widget>[
                 Container(
-                  width: 150.0,
+                  width: 100.0,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
@@ -40,6 +39,7 @@ class _CartScreenState extends State<CartScreen> {
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.only(left: 20.0),
+
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,

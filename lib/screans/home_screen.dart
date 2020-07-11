@@ -51,38 +51,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.all(15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      restaurant.name,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.all(15.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        restaurant.name,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    RateStars(
-                      rating: restaurant.rating,
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      restaurant.address,
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
+                      SizedBox(
+                        height: 5.0,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
+                      RateStars(
+                        rating: restaurant.rating,
+                      ),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        restaurant.address,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
